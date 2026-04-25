@@ -6,6 +6,7 @@
 
 **Deterministic. Auditable. Open-source. Built for the validated state.**
 
+[![smoke](https://github.com/gauravpandey36/gxp-struct/actions/workflows/smoke.yml/badge.svg?branch=main)](https://github.com/gauravpandey36/gxp-struct/actions/workflows/smoke.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Validation: 10/10](https://img.shields.io/badge/golden_suite-10%2F10-brightgreen.svg)](docs/RESEARCH_FINDINGS.md)

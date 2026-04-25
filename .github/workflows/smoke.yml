@@ -1,0 +1,35 @@
+name: smoke
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  rules-only:
+    name: Golden suite (rules-only, no API keys)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # The deterministic rule engine has no third-party deps.
+      # validation_test.py only needs `rich` for its formatted output —
+      # so we deliberately install a minimal set rather than the full
+      # requirements.txt (which pulls llama-index, pinecone, openai etc.
+      # for the RAG path, none of which the rules-only smoke test uses).
+      - name: Install minimal dependencies
+        run: pip install --no-cache-dir 'rich>=13.7.0'
+
+      - name: Run golden suite (rules-only)
+        run: python validation_test.py --rules-only
