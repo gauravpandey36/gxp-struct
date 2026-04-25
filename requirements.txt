@@ -1,0 +1,21 @@
+# Core RAG framework
+llama-index>=0.12.0
+llama-index-core>=0.12.0
+llama-index-llms-openai>=0.3.0
+llama-index-embeddings-openai>=0.3.0
+llama-index-vector-stores-pinecone>=0.4.0
+llama-index-readers-file>=0.4.0
+
+# Vector DB
+pinecone>=5.0.0
+
+# LLM
+openai>=1.50.0
+
+# Markdown / table parsing (used by MarkdownElementNodeParser)
+unstructured[md]>=0.15.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.6.0
+rich>=13.7.0

@@ -1,0 +1,46 @@
+[SYSTEM_RULE_START]
+SOP_ID: SOP-DEV-001 | REV: 1.0 | EFFECTIVE: 2026-04-25
+TITLE: Deviation and CAPA Management System
+ARCHETYPE: SOP
+JURISDICTION: Global
+HUMAN_DOC: ../data/Deviation_SOP.md
+
+# 1.0 ACCESS_CONTROL & RESPONSIBILITY
+@RULE:RESP_001 { ROLE: "Quality Approver", AUTHORITY: "SOLE", ACTION: "Final Leveling Approval", SOURCE_SECTION: "3.0" }
+@RULE:RESP_002 { ROLE: "Originator",       ACTION: "Initiation",            WINDOW: "2 Business Days", SOURCE_SECTION: "3.0" }
+@RULE:RESP_003 { ROLE: "Deviation Owner",  ACTION: "Containment, Impact Assessment, Risk-Based Leveling", SOURCE_SECTION: "3.0" }
+
+# 2.0 DETERMINISTIC_TIMELINES
+@TIMELINE:L1_COMPLETION    { VALUE: 30, UNIT: "Calendar Days", START_EVENT: "Initiation",            SOURCE_SECTION: "5.3" }
+@TIMELINE:L2_INVESTIGATION { VALUE: 60, UNIT: "Calendar Days", START_EVENT: "Initiation",            SOURCE_SECTION: "5.3" }
+@TIMELINE:CAPA_EXECUTION   { VALUE: 60, UNIT: "Calendar Days", START_EVENT: "Investigation Approval", SOURCE_SECTION: "5.3" }
+@TIMELINE:INITIATION_CLOCK { VALUE: 2,  UNIT: "Business Days", START_EVENT: "Discovery",             SOURCE_SECTION: "5.1" }
+
+# 3.0 CLASSIFICATION_LOGIC (MANDATORY_PRECEDENCE)
+@LOGIC:L2_TRIGGER  { IF: ["Sterility", "Falsified Data", "CPP"], THEN: "Level 2", OVERRIDE: TRUE,  SOURCE_SECTION: "5.2" }
+@LOGIC:DEFAULT     { IF: "NOT in Attachment 4",                  THEN: "Level 1", AUTHORITY: "Quality Approver", SOURCE_SECTION: "5.2" }
+@LOGIC:CLOSE_REF   { IF: "Close Reference Deviation",            THEN: "Level 1", MANDATORY: TRUE, SOURCE_SECTION: "5.2" }
+@LOGIC:OVERRIDE_QM { IF: "Quality Management evaluation",        THEN: "Reclassify L1 to L2",      SOURCE_SECTION: "5.2" }
+
+# 4.0 GEOGRAPHIC_EXCEPTIONS
+@EXCEPTION:LANG_DEFAULT { COUNTRY: "*",        REQUIREMENT: "English",  STATUS: "MANDATORY", SOURCE_SECTION: "5.1" }
+@EXCEPTION:LANG_01      { COUNTRY: "Austria", SITE: "BioLife", REQUIREMENT: "English", STATUS: "EXEMPT", SOURCE_SECTION: "5.1" }
+
+# 5.0 SCOPE_GUARDRAILS
+@SCOPE:APPLIES_TO    { ENTITIES: ["Internal Technical Operations", "CMO", "CTL"], SOURCE_SECTION: "2.0" }
+@SCOPE:EXCLUDED_FROM { ENTITIES: ["Preclinical research", "Environmental Monitoring Excursions", "Utility Monitoring Excursions"], SOURCE_SECTION: "2.0" }
+@SCOPE:PROHIBITED    { ITEMS: ["Planned Deviations"], STATUS: "STRICTLY PROHIBITED", SOURCE_SECTION: "2.0" }
+
+# 6.0 REFERENCED_STANDARDS
+@REFERENCE:R_01 { DOC_ID: "SOP-QA-005",  TITLE: "Quality Management Change Control System", SOURCE_SECTION: "4.0" }
+@REFERENCE:R_02 { DOC_ID: "SOP-AUD-010", TITLE: "Internal and External Quality Auditing",   SOURCE_SECTION: "4.0" }
+@REFERENCE:R_03 { DOC_ID: "SOP-MET-022", TITLE: "Global Quality Metrics Reporting",         SOURCE_SECTION: "4.0" }
+@REFERENCE:R_04 { DOC_ID: "STRD-000054", TITLE: "Company Global Quality Standard Glossary", SOURCE_SECTION: "4.0" }
+
+# 7.0 ATTACHMENTS
+@ATTACHMENT:A_01 { ID: "Attachment 1", TITLE: "GEMS Workflow Diagram",                  SOURCE_SECTION: "6.0" }
+@ATTACHMENT:A_04 { ID: "Attachment 4", TITLE: "Investigation - CAPA Reference List",    SOURCE_SECTION: "6.0", ROLE: "REFERENCE_LIST_FOR_LOGIC:DEFAULT" }
+
+# 8.0 REVISION_HISTORY
+@REVISION:V_1_0 { VERSION: "1.0", EFFECTIVE: "2026-04-25", SUMMARY: "Initial Release of New Global SOP; Integration of legacy standards.", SOURCE_SECTION: "7.0" }
+[SYSTEM_RULE_END]

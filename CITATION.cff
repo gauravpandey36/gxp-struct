@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: "GxP-Struct: A machine-readable standard for pharmaceutical SOPs"
+message: "If you use this software or schema, please cite it as below."
+type: software
+authors:
+  - family-names: Pandey
+    given-names: Gourav
+    email: chotupandey616@gmail.com
+abstract: >-
+  GxP-Struct is an open-source standard and reference implementation for
+  representing pharmaceutical Standard Operating Procedures (SOPs) in a
+  machine-readable form that supports deterministic rule execution by AI
+  agents. By separating the SOP's hard rules (mandatory deadlines,
+  classifications, geographic exemptions) from its prose, the framework
+  enables retrieval-augmented generation systems to bypass the language
+  model entirely for compliance-critical questions, returning cited,
+  audit-ready answers without hallucination. The framework is designed
+  to align with 21 CFR Part 11 and EU GMP Annex 11 expectations for
+  electronic records and computerized systems.
+keywords:
+  - pharmaceutical
+  - GxP
+  - retrieval-augmented generation
+  - RAG
+  - SOP
+  - 21 CFR Part 11
+  - Annex 11
+  - deterministic AI
+  - validated state
+  - machine-readable
+license: MIT
+repository-code: "https://github.com/gauravpandey36/gxp-struct"
+version: "0.1.0"
+date-released: "2026-04-25"
