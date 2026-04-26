@@ -3,6 +3,14 @@
 .env.*
 !.env.example
 
+# Local-only working folders (SOPs, scratch keys, demo outputs)
+Reference SOPs/
+API keys/
+demo_rag/outputs/
+
+# Jupyter auto-save folders
+.ipynb_checkpoints/
+
 # Audit log — should live on a write-once volume in prod, never in git
 audit/
 *.jsonl
